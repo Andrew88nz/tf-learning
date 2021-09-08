@@ -17,6 +17,7 @@ resource "aws_launch_configuration" "example" {
               echo "Hello, World" > index.html
               nohup busybox httpd -f -p ${var.server_port} &
               EOF
+
               # Required when using a launch configuration with an auto scaling group.
 # https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
 lifecycle {
@@ -48,11 +49,6 @@ resource "aws_autoscaling_group" "example" {
 #               echo "Hello, World" > index.html
 #               nohup busybox httpd -f -p ${var.server_port} &
 #               EOF
-
-  tags = {
-    Name = "terraform-example"
-  }
-}
 
 resource "aws_security_group" "instance" {
 
